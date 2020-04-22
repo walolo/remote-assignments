@@ -1,9 +1,9 @@
 // Assignment1
 const numbers = [1,2,3,4,5];
 function max(numbers) {
-    let hightest = 0;    
+    let hightest = numbers[0];    
     for(let i = 0; i < numbers.length; i++) {
-        if(numbers[i]>hightest) {
+        if(numbers[i]>=hightest) {
             hightest = numbers[i];
         }
     }
@@ -41,7 +41,7 @@ class Args {
         return result;
         }
 }
-let way_2 = new Args ("+",3,4); // way2: using class
+let way_2 = new Args ("+",3,4); // way2: call function : way_2.calculate();
 
 // Assignment3
 function avg(data){
