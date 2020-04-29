@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum</title>
+    <script type="text/javascript">
+        function getData(){
+           let req = new XMLHttpRequest();
+           req.open("get","http://localhost:3000/getData?number=10");
+           req.onload = function (){
+               let number10 = document.getElementById("number10");
+               number10.innerHTML = this.responseText;
+           };
+           req.send();
+        }
+
+    </script>
+</head>
+<body>
+    <span onclick="getData();">3. Click to get the sum from 1 to 10=</span><span id="number10"></span>
+    <form action="http://localhost:3000/getData">
+        <label for="">4. Input to get the sum from 1 to n</label>
+        <input type="text" name="number">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
