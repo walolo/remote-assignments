@@ -1,5 +1,8 @@
 let express = require("express");
 let app = express();
+var cookieParser = require('cookie-parser');
+app.use(cookieParser());
+app.use(express.static('public'));
 app.get("/", function(req, res) {
     res.send("Hello, My Server!");	
 });
@@ -20,7 +23,9 @@ app.get("/getData", function(req, res) {
 		res.send(result.toString());
 	}
 });
+app.get("/myName", function(req, res) {
+	console.log(req.cookies);
+});
 app.listen(3000,function(){
     console.log("localhost:3000");
 });
-app.use(express.static('public'));

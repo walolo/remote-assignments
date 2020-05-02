@@ -9,20 +9,29 @@
            let req = new XMLHttpRequest();
            req.open("get","http://localhost:3000/getData?number=10");
            req.onload = function (){
-               let number10 = document.getElementById("number10");
-               number10.innerHTML = this.responseText;
+               let result = document.getElementById("result");
+               result.innerHTML = this.responseText;
            };
            req.send();
         }
+        function getData2(){
+           let req = new XMLHttpRequest();
+           let numberN = document.getElementById("numberN").value;
+           req.open("get","http://localhost:3000/getData?number="+numberN);
+           req.onload = function (){
+               let result = document.getElementById("result");
+               result.innerHTML = this.responseText;
+           };
+           req.send();
+        }   
 
     </script>
 </head>
 <body>
-    <span onclick="getData();">3. Click to get the sum from 1 to 10=</span><span id="number10"></span>
-    <form action="http://localhost:3000/getData">
-        <label for="">4. Input to get the sum from 1 to n</label>
-        <input type="text" name="number">
-        <input type="submit" value="Submit">
-    </form>
+    <span onclick="getData();">3. Click to get the sum from 1 to 10</span><br>    
+    <label for="">4. Input to get the sum from 1 to n</label>
+    <input id="numberN" type="text" name="number">
+    <input onclick="getData2();" type="button" value="Submit"><br>
+    <span>Result :</span><span id="result"></span>    
 </body>
 </html>
