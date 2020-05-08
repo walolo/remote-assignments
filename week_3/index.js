@@ -1,6 +1,8 @@
-let express = require("express");
-let app = express();
-var cookieParser = require('cookie-parser');
+const express = require("express");
+const bodyParser = require("body-Parser");
+const app = express();
+let cookieParser = require('cookie-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'));
 app.get("/", function(req, res) {

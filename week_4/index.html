@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Assignment 3</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/browse/redux@4.0.5/dist/redux.min.js"></script>
+    <script type="text/babel">
+        class MainNav extends React.Component{
+            constructor(props){
+                super(props);
+            }
+            render(){
+                return <div className="main-nav">
+                            <li>Item 1</li>
+                            <li>Item 2</li>
+                            <li>Item 3</li>
+                            <li>Item 4</li>
+                        </div>;
+            }
+        }
+        class MobileMenu extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={display:"none"}
+            }
+            render(){
+                return <span onClick={this.clickHandler.bind(this)}>menu</span>;
+            }
+            clickHandler(e){
+                let MobileNav= document.getElementById("mobile-nav");
+                MobileNav.style.display=this.state.display;
+                this.setState({display:"block"});
+            }
+        }
+        class MobileNav extends React.Component{
+            constructor(props){
+                super(props);
+            }
+            render(){
+                return <div className="mobile-nav">
+                            <p>Item 1</p>
+                            <p>Item 2</p>
+                            <p>Item 3</p>
+                            <p>Item 4</p>
+                        </div>;
+            }
+        }
+        class Banner extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={text:"Welcome Message"}
+            }
+            render(){
+                return <h1 onClick={this.clickHandler.bind(this)}>{this.state.text}</h1>;
+            }
+            clickHandler(e){
+                this.setState({text:"Have a Good Time!"});
+            }
+        }
+        class Box extends React.Component{
+            constructor(props){
+                super(props);
+            }
+            render(){
+                return <div>
+                            <h6>Content Box{this.props.number}</h6>
+                       </div>;
+            }
+        }
+        class BoxGrid extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={total:4};
+            }
+            render(){
+                let box=[];
+                for(let i=0; i<this.state.total; i++){
+                    box.push(<Box number={i+1}/>);
+                }
+                return <div className="box">{box}
+                       <a onClick={this.clickHandler.bind(this)} className="button" href="#">Call To Action</a>
+                       </div>;
+            }
+            clickHandler(e){
+                this.setState({total:8});
+            }            
+        }   
+        window.addEventListener("load",()=>{
+            ReactDOM.render(<MainNav/>, document.getElementById("main-nav"));
+            ReactDOM.render(<MobileMenu/>, document.getElementById("menu"));
+            ReactDOM.render(<MobileNav/>, document.getElementById("mobile-nav"));
+            ReactDOM.render(<Banner/>, document.getElementById("wm"));
+            ReactDOM.render(<BoxGrid/>, document.getElementById("boxgrid"));
+        });
+
+    </script>
+  </head>
+  <body>
+    <!--Header-->
+    <header class="main-header">
+		<h4 class="name">Website Title / Logo</h4>
+        <div id="main-nav"></div>       
+        <span id="menu"></span>
+        <div id="mobile-nav"></div>   
+    </header>
+    <!--Banner--> 
+    <div class="banner">
+        <div id="wm"></div>
+    </div>
+    <!--Box-->
+    <div id="boxgrid"></div>
+	<!--Button-->
+	<div class="cta" id="button"></div>
+  </body>
+</html>
