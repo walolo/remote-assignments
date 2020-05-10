@@ -23,31 +23,28 @@
                         </div>;
             }
         }
-        class MobileMenu extends React.Component{
-            constructor(props){
-                super(props);
-                this.state={display:"none"}
-            }
-            render(){
-                return <span onClick={this.clickHandler.bind(this)}>menu</span>;
-            }
-            clickHandler(e){
-                let MobileNav= document.getElementById("mobile-nav");
-                MobileNav.style.display=this.state.display;
-                this.setState({display:"block"});
-            }
-        }
         class MobileNav extends React.Component{
             constructor(props){
                 super(props);
+                this.state={on:false};
             }
             render(){
-                return <div className="mobile-nav">
-                            <p>Item 1</p>
-                            <p>Item 2</p>
-                            <p>Item 3</p>
-                            <p>Item 4</p>
+                let ClassName="mobile-nav";
+                if(this.state.on){
+                    ClassName+= "mobile-nav-on"
+                }
+                return <div>
+                            <span className={"menu"} onClick={this.clickHandler.bind(this)}>menu</span>
+                            <div className={ClassName}>
+                                <p>Item 1</p>
+                                <p>Item 2</p>
+                                <p>Item 3</p>
+                                <p>Item 4</p>
+                            </div>
                         </div>;
+            }
+            clickHandler(e){
+                this.setState((currentState)=>({on:!currentState.on}));
             }
         }
         class Banner extends React.Component{
@@ -56,9 +53,9 @@
                 this.state={text:"Welcome Message"}
             }
             render(){
-                return <h1 onClick={this.clickHandler.bind(this)}>{this.state.text}</h1>;
+                return <h1 onClick={this.changeText.bind(this)}>{this.state.text}</h1>;
             }
-            clickHandler(e){
+            changeText(e){
                 this.setState({text:"Have a Good Time!"});
             }
         }
@@ -83,30 +80,27 @@
                     box.push(<Box number={i+1}/>);
                 }
                 return <div className="box">{box}
-                       <a onClick={this.clickHandler.bind(this)} className="button" href="#">Call To Action</a>
+                       <a onClick={this.extendBox.bind(this)} className="button" href="#">Call To Action</a>
                        </div>;
             }
-            clickHandler(e){
+            extendBox(e){
                 this.setState({total:8});
             }            
-        }   
+        } 
         window.addEventListener("load",()=>{
-            ReactDOM.render(<MainNav/>, document.getElementById("main-nav"));
-            ReactDOM.render(<MobileMenu/>, document.getElementById("menu"));
-            ReactDOM.render(<MobileNav/>, document.getElementById("mobile-nav"));
+            ReactDOM.render(<MainNav/>, document.getElementById("mainNav"));
+            ReactDOM.render(<MobileNav/>, document.getElementById("mobileNav"));
             ReactDOM.render(<Banner/>, document.getElementById("wm"));
             ReactDOM.render(<BoxGrid/>, document.getElementById("boxgrid"));
         });
-
     </script>
   </head>
   <body>
     <!--Header-->
     <header class="main-header">
 		<h4 class="name">Website Title / Logo</h4>
-        <div id="main-nav"></div>       
-        <span id="menu"></span>
-        <div id="mobile-nav"></div>   
+        <div id="mainNav"></div>       
+        <div id="mobileNav"></div>   
     </header>
     <!--Banner--> 
     <div class="banner">

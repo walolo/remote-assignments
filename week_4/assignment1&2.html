@@ -21,19 +21,50 @@
            req.onload = function (){
            callback(this.responseText);
            };
+           
            req.send();
         }
         function render(data){
-            var para = document.createElement("p");
+            let text = data ;
+            let obj = JSON.parse(text);
+            let keys = Object.keys(obj[0]);
+            let valus = Object.values(obj[0]);
+            // create a table
+            let table = document.createElement("table");            
+            // create table head
+            let th = table.insertRow(0);
+            let th0 = th.insertCell(0);
+            let th1 = th.insertCell(1);
+            let th2 = th.insertCell(2);
+            // create table data
+            let td = table.insertRow(1);
+            let td0 = td.insertCell(0);
+            let td1 = td.insertCell(1);
+            let td2 = td.insertCell(2);           
+            // show table
+            th0.innerHTML = keys[0];
+            th1.innerHTML = keys[1];
+            th2.innerHTML = keys[2];
+            td0.innerHTML = valus[0];
+            td1.innerHTML = valus[1];
+            td2.innerHTML = valus[2];
+            document.body.appendChild(table);   
+        }           
+
+            /*let para = document.createElement("p");
             para.innerText = data;
-            document.body.appendChild(para);
-        }
+            document.body.appendChild(para);*/
         ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
             render(response);
         });
     </script>
 </head>
+<style>
+    table, td {
+      border: 1px solid black;
+    }
+    </style>
 <body>
-    
+ 
 </body>
 </html>
