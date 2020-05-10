@@ -87,28 +87,37 @@
                 this.setState({total:8});
             }            
         } 
+        class Wrapper extends React.Component{
+            constructor(props){
+                super(props);
+            }
+            render(){
+                return <div> 
+                            <header className="main-header">
+                                <h4 className="name">Website Title / Logo</h4>
+                                <div id="mainNav">
+                                <MainNav/>
+                                </div>       
+                                <div id="mobileNav">
+                                <MobileNav/>
+                                </div>   
+                            </header>
+                            <div className="banner">
+                                <div id="wm">
+                                <Banner/>
+                                </div>
+                            </div>
+                            <div id="boxgrid">
+                                <BoxGrid/>
+                            </div>
+                        </div>; 
+            }
+        }               
         window.addEventListener("load",()=>{
-            ReactDOM.render(<MainNav/>, document.getElementById("mainNav"));
-            ReactDOM.render(<MobileNav/>, document.getElementById("mobileNav"));
-            ReactDOM.render(<Banner/>, document.getElementById("wm"));
-            ReactDOM.render(<BoxGrid/>, document.getElementById("boxgrid"));
+            ReactDOM.render(<Wrapper/>, document.body);
         });
     </script>
   </head>
   <body>
-    <!--Header-->
-    <header class="main-header">
-		<h4 class="name">Website Title / Logo</h4>
-        <div id="mainNav"></div>       
-        <div id="mobileNav"></div>   
-    </header>
-    <!--Banner--> 
-    <div class="banner">
-        <div id="wm"></div>
-    </div>
-    <!--Box-->
-    <div id="boxgrid"></div>
-	<!--Button-->
-	<div class="cta" id="button"></div>
   </body>
 </html>

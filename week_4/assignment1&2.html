@@ -28,7 +28,9 @@
             let text = data ;
             let obj = JSON.parse(text);
             let keys = Object.keys(obj[0]);
-            let valus = Object.values(obj[0]);
+            let value0 = Object.values(obj[0]);
+            let value1 = Object.values(obj[1]);
+            let value2 = Object.values(obj[2]);
             // create a table
             let table = document.createElement("table");            
             // create table head
@@ -37,17 +39,33 @@
             let th1 = th.insertCell(1);
             let th2 = th.insertCell(2);
             // create table data
-            let td = table.insertRow(1);
-            let td0 = td.insertCell(0);
-            let td1 = td.insertCell(1);
-            let td2 = td.insertCell(2);           
+            let td_1 = table.insertRow(1);
+            let td0 = td_1.insertCell(0);
+            let td1 = td_1.insertCell(1);
+            let td2 = td_1.insertCell(2);
+            
+            let td_2 = table.insertRow(2);
+            let td3 = td_2.insertCell(0);
+            let td4 = td_2.insertCell(1);
+            let td5 = td_2.insertCell(2);
+
+            let td_3 = table.insertRow(2);
+            let td6 = td_3.insertCell(0);
+            let td7 = td_3.insertCell(1);
+            let td8 = td_3.insertCell(2);            
             // show table
             th0.innerHTML = keys[0];
             th1.innerHTML = keys[1];
             th2.innerHTML = keys[2];
-            td0.innerHTML = valus[0];
-            td1.innerHTML = valus[1];
-            td2.innerHTML = valus[2];
+            td0.innerHTML = value0[0];
+            td1.innerHTML = value0[1];
+            td2.innerHTML = value0[2];
+            td3.innerHTML = value1[0];
+            td4.innerHTML = value1[1];
+            td5.innerHTML = value1[2];
+            td6.innerHTML = value2[0];
+            td7.innerHTML = value2[1];
+            td8.innerHTML = value2[2];
             document.body.appendChild(table);   
         }           
 
