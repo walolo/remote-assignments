@@ -71,6 +71,9 @@ li {
     height: 100%;
     top:0;
 }
+#mobileNav {
+    display: block;
+}
 /*flexbox*/
 .main-header, .main-nav, .box {
 	display: flex;
@@ -102,5 +105,8 @@ li {
     }
     .menu {
         display: none;
-    }    
+    } 
+    #mobileNav {
+        display: none;
+    }   
 }
