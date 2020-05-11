@@ -28,50 +28,25 @@
             let text = data ;
             let obj = JSON.parse(text);
             let keys = Object.keys(obj[0]);
-            let value0 = Object.values(obj[0]);
-            let value1 = Object.values(obj[1]);
-            let value2 = Object.values(obj[2]);
-            // create a table
-            let table = document.createElement("table");            
-            // create table head
-            let th = table.insertRow(0);
-            let th0 = th.insertCell(0);
-            let th1 = th.insertCell(1);
-            let th2 = th.insertCell(2);
-            // create table data
-            let td_1 = table.insertRow(1);
-            let td0 = td_1.insertCell(0);
-            let td1 = td_1.insertCell(1);
-            let td2 = td_1.insertCell(2);
-            
-            let td_2 = table.insertRow(2);
-            let td3 = td_2.insertCell(0);
-            let td4 = td_2.insertCell(1);
-            let td5 = td_2.insertCell(2);
-
-            let td_3 = table.insertRow(2);
-            let td6 = td_3.insertCell(0);
-            let td7 = td_3.insertCell(1);
-            let td8 = td_3.insertCell(2);            
-            // show table
-            th0.innerHTML = keys[0];
-            th1.innerHTML = keys[1];
-            th2.innerHTML = keys[2];
-            td0.innerHTML = value0[0];
-            td1.innerHTML = value0[1];
-            td2.innerHTML = value0[2];
-            td3.innerHTML = value1[0];
-            td4.innerHTML = value1[1];
-            td5.innerHTML = value1[2];
-            td6.innerHTML = value2[0];
-            td7.innerHTML = value2[1];
-            td8.innerHTML = value2[2];
-            document.body.appendChild(table);   
+            // Create a table
+            let table = document.createElement("table");
+            // Create table header
+            let tr = table.insertRow(0);
+            for(let i=0; i<keys.length; i++){
+                let th = document.createElement("th");
+                th.innerHTML = keys[i];
+                tr.appendChild(th);
+            }
+            // Create table data
+            for(let i=0; i<obj.length; i++){
+                let tr = table.insertRow(-1);
+                for(let j=0; j<keys.length;j++){
+                    let tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = obj[i][keys[j]];
+                }
+            }
+            document.body.appendChild(table);
         }           
-
-            /*let para = document.createElement("p");
-            para.innerText = data;
-            document.body.appendChild(para);*/
         ajax("https://cwpeng.github.io/live-records-samples/data/products.json", function(response){
             render(response);
         });
